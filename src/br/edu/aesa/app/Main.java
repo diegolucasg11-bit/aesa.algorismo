@@ -92,6 +92,39 @@ public class Main {
                 }
             }
 
+            if (opcao == 4) {
+                System.out.println("Digite o ID do produto que deseja atualizar: ");
+                int id = scanner.nextInt();
+
+                Produto produto = estoqueService.buscarPorId(id);
+
+                if (produto == null) {
+
+                    System.out.println("Produto não encontrado.");
+
+                } else {
+
+                    System.out.println("Digite o novo nome: ");
+                    String nome = scanner.next();
+
+                    System.out.println("Digite a nova categoria: ");
+                    String categoria = scanner.next();
+
+                    System.out.println("Digite o novo preço: ");
+                    double preco = scanner.nextDouble();
+
+                    System.out.println("Digite a nova quantidade: ");
+                    int quantidade = scanner.nextInt();
+
+                    boolean atualizado = estoqueService.atualizar(id,nome,categoria,preco,quantidade);
+
+                    if (atualizado) {
+                        System.out.println("Produto atualizado com sucesso!");
+                    }
+
+                }
+            }
+
         } while (opcao != 0);
     }
 }
