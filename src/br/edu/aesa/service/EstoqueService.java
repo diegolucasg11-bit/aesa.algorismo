@@ -1,6 +1,8 @@
 package br.edu.aesa.service;
 
 import br.edu.aesa.model.Produto;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,4 +40,14 @@ public class EstoqueService {
 
             return true;
     }
+
+    public boolean remover(int id) {
+        Produto produto = produtos.remove(id);
+
+        if (produto == null) {
+            return false;
+        }
+
+        return true;
     }
+}
