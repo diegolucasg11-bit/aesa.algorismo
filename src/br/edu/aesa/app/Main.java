@@ -55,6 +55,24 @@ public class Main {
 
             }
 
+            if (opcao == 2) {
+
+                if (estoqueService.listarTodos().isEmpty()) {
+
+                    System.out.println("Nenhum produto cadastrado.");
+                } else {
+
+                    for (Produto produto : estoqueService.listarTodos()) {
+                        System.out.println("ID: " + produto.getId());
+                        System.out.println("Nome: " + produto.getNome());
+                        System.out.println("Categoria: " + produto.getCategoria());
+                        System.out.println("Preço: R$ " + produto.getPreco());
+                        System.out.println("Quantidade: " + produto.getQuantidade());
+                        System.out.println("-------------------------");
+                    }
+                }
+            }
+
         } while (opcao != 0);
     }
 }
