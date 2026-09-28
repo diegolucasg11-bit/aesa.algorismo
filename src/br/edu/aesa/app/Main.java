@@ -52,7 +52,6 @@ public class Main {
                 } else {
                     System.out.println("Erro: já existe um produto com esse ID.");
                 }
-
             }
 
             if (opcao == 2) {
@@ -70,6 +69,26 @@ public class Main {
                         System.out.println("Quantidade: " + produto.getQuantidade());
                         System.out.println("-------------------------");
                     }
+                }
+            }
+
+            if (opcao == 3) {
+
+                System.out.println("Digite o ID do produto: ");
+                int id = scanner.nextInt();
+
+                Produto produto = estoqueService.buscarPorId(id);
+
+                if (produto == null) {
+
+                    System.out.println("Produto não encontrado.");
+
+                } else {
+                    System.out.println("ID: " + produto.getId());
+                    System.out.println("Nome: " + produto.getNome());
+                    System.out.println("Categoria: " + produto.getCategoria());
+                    System.out.println("Preço: R$ " + produto.getPreco());
+                    System.out.println("Quantidade: " + produto.getQuantidade());
                 }
             }
 
