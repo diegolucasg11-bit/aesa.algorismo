@@ -49,6 +49,7 @@ public class Main {
 
                 if (cadastrado) {
                     System.out.println("Produto cadastrado com sucesso!");
+
                 } else {
                     System.out.println("Erro: já existe um produto com esse ID.");
                 }
@@ -59,6 +60,7 @@ public class Main {
                 if (estoqueService.listarTodos().isEmpty()) {
 
                     System.out.println("Nenhum produto cadastrado.");
+
                 } else {
 
                     for (Produto produto : estoqueService.listarTodos()) {
@@ -93,6 +95,7 @@ public class Main {
             }
 
             if (opcao == 4) {
+
                 System.out.println("Digite o ID do produto que deseja atualizar: ");
                 int id = scanner.nextInt();
 
@@ -122,6 +125,21 @@ public class Main {
                         System.out.println("Produto atualizado com sucesso!");
                     }
 
+                }
+            }
+
+            if (opcao == 5) {
+
+                System.out.println("Digite o ID do produto que deseja remover: ");
+                int id = scanner.nextInt();
+
+                boolean removido = estoqueService.remover(id);
+
+                if (removido) {
+                    System.out.println("Produto removido com sucesso!");
+
+                } else {
+                    System.out.println("Produto não encontrado.");
                 }
             }
 
