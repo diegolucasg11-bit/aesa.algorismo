@@ -35,6 +35,8 @@ public class Main {
 
             if (opcao == 1) {
 
+                //id
+
                 System.out.println("Digite o ID do produto: ");
 
                 while (!scanner.hasNextInt()) {
@@ -50,19 +52,76 @@ public class Main {
                     id = scanner.nextInt();
                 }
 
-                System.out.println("Digite o nome do produto: ");
-                String nome = scanner.next();
+                //nome
 
-                System.out.println("Digite a categoria: ");
-                String categoria = scanner.next();
+                scanner.nextLine();
+
+                String nome;
+
+                do {
+                    System.out.println("Digite o nome do produto: ");
+                     nome = scanner.nextLine();
+
+                     if (nome.trim().isEmpty()) {
+                         System.out.println("O nome não pode ficar vazio.");
+                     }
+
+                } while (nome.trim().isEmpty());
+
+                //categoria
+
+                String categoria;
+
+                do {
+                    System.out.println();
+
+                    System.out.println("Digite a categoria: ");
+                     categoria = scanner.nextLine();
+
+                     if (categoria.trim().isEmpty()) {
+                         System.out.println("A categoria não pode ficar vazia.");
+                     }
+                } while (categoria.trim().isEmpty());
+
+                //preço
 
                 System.out.println("Digite o preço: ");
+                while (!scanner.hasNextDouble()) {
+
+                    System.out.println("Digite apenas números.");
+                    scanner.next();
+                }
+
                 double preco = scanner.nextDouble();
 
+                while (preco < 0) {
+
+                    System.out.println("O preço não pode ser negativo.");
+                    System.out.println("Digite o preço novamente: ");
+                    preco = scanner.nextDouble();
+                }
+
+                //quantidade
+
                 System.out.println("Digite a quantidade: ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Digite apenas números inteiros.");
+                    scanner.next();
+                }
+
                 int quantidade = scanner.nextInt();
 
+                while (quantidade < 0) {
+                    System.out.println("A quantidade não pode ser negativa.");
+                    System.out.println("Digite a quantidade novamente: ");
+                    quantidade = scanner.nextInt();
+                }
+
+                //criar produto
+
                 Produto produto = new Produto(id, nome, categoria, preco, quantidade);
+
+                //cadastrar produto
 
                 boolean cadastrado = estoqueService.cadastrar(produto);
 
