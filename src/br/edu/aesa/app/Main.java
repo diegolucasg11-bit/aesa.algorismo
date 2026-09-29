@@ -24,12 +24,31 @@ public class Main {
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
+            if (scanner.hasNextInt()) {
             opcao = scanner.nextInt();
+
+            } else {
+                System.out.println("Digite apenas números.");
+                scanner.next();
+                opcao = -1;
+            }
 
             if (opcao == 1) {
 
                 System.out.println("Digite o ID do produto: ");
+
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Digite apenas números.");
+                    scanner.next();
+                }
+
                 int id = scanner.nextInt();
+
+                while (id <= 0) {
+                    System.out.println("O ID deve ser maior que zero.");
+                    System.out.println("Digite o ID do produto novamente: ");
+                    id = scanner.nextInt();
+                }
 
                 System.out.println("Digite o nome do produto: ");
                 String nome = scanner.next();
@@ -141,6 +160,11 @@ public class Main {
                 } else {
                     System.out.println("Produto não encontrado.");
                 }
+            }
+
+            if (opcao < 0 || opcao > 5) {
+
+                System.out.println("Opção inválida. Escolha uma opção entre 0 e 5.");
             }
 
         } while (opcao != 0);
