@@ -2,6 +2,8 @@ package br.edu.aesa.app;
 
 import br.edu.aesa.model.Produto;
 import br.edu.aesa.service.EstoqueService;
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.Scanner;
 
 public class Main {
@@ -33,6 +35,7 @@ public class Main {
                 opcao = -1;
             }
 
+            //CADASTRAR
             if (opcao == 1) {
 
                 //id
@@ -69,7 +72,6 @@ public class Main {
                 } while (nome.trim().isEmpty());
 
                 //categoria
-
                 String categoria;
 
                 do {
@@ -133,6 +135,7 @@ public class Main {
                 }
             }
 
+            //LISTAR TODOS
             if (opcao == 2) {
 
                 if (estoqueService.listarTodos().isEmpty()) {
@@ -141,7 +144,10 @@ public class Main {
 
                 } else {
 
+                    System.out.println("\n===== PRODUTOS CADASTRADOS =====");
+
                     for (Produto produto : estoqueService.listarTodos()) {
+
                         System.out.println("ID: " + produto.getId());
                         System.out.println("Nome: " + produto.getNome());
                         System.out.println("Categoria: " + produto.getCategoria());
@@ -152,9 +158,16 @@ public class Main {
                 }
             }
 
+            //BUSCAR
             if (opcao == 3) {
 
                 System.out.println("Digite o ID do produto: ");
+
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Digite apenas números.");
+                    scanner.next();
+                }
+
                 int id = scanner.nextInt();
 
                 Produto produto = estoqueService.buscarPorId(id);
@@ -172,9 +185,17 @@ public class Main {
                 }
             }
 
+
+            //ATUALIZAR
             if (opcao == 4) {
 
                 System.out.println("Digite o ID do produto que deseja atualizar: ");
+
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Digite apenas números.");
+                    scanner.next();
+                }
+
                 int id = scanner.nextInt();
 
                 Produto produto = estoqueService.buscarPorId(id);
@@ -185,17 +206,66 @@ public class Main {
 
                 } else {
 
-                    System.out.println("Digite o novo nome: ");
-                    String nome = scanner.next();
+                    scanner.nextLine();
 
-                    System.out.println("Digite a nova categoria: ");
-                    String categoria = scanner.next();
+                    //nome
+                    String nome;
 
+                    do {
+                        System.out.println("Digite o novo nome: ");
+                         nome = scanner.nextLine();
+
+                         if (nome.trim().isEmpty()) {
+                             System.out.println("O nome não pode ficar vazio.");
+                         }
+
+                    } while (nome.trim().isEmpty());
+
+                    //categoria
+                    String categoria;
+
+                    do {
+
+                        System.out.println("Digite a nova categoria: ");
+                        categoria = scanner.nextLine();
+
+                        if (categoria.trim().isEmpty()) {
+                            System.out.println("A categoria não pode ficar vazia.");
+                        }
+
+                    } while (categoria.trim().isEmpty());
+
+                    //preco
                     System.out.println("Digite o novo preço: ");
+
+                    while (!scanner.hasNextDouble()) {
+                        System.out.println("Digite apenas números.");
+                        scanner.next();
+                    }
+
                     double preco = scanner.nextDouble();
 
+                    while (preco < 0) {
+                        System.out.println("O preço não pode ser negativo.");
+                        System.out.print("Digite o novo preço novamente: ");
+                        preco = scanner.nextDouble();
+                    }
+
+                    //quantidade
                     System.out.println("Digite a nova quantidade: ");
+
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Digite apenas números inteiros.");
+                        scanner.next();
+                    }
+
                     int quantidade = scanner.nextInt();
+
+                    while (quantidade < 0) {
+                        System.out.println("A quantidade não pode ser negativa.");
+                        System.out.print("Digite a nova quantidade novamente: ");
+                        quantidade = scanner.nextInt();
+                    }
 
                     boolean atualizado = estoqueService.atualizar(id,nome,categoria,preco,quantidade);
 
@@ -206,9 +276,16 @@ public class Main {
                 }
             }
 
+            //REMOVER
             if (opcao == 5) {
 
                 System.out.println("Digite o ID do produto que deseja remover: ");
+
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Digite apenas números.");
+                    scanner.next();
+                }
+
                 int id = scanner.nextInt();
 
                 boolean removido = estoqueService.remover(id);

@@ -11,6 +11,11 @@ public class EstoqueService {
     private Map<Integer, Produto> produtos = new HashMap<>();
 
     public boolean cadastrar(Produto produto) {
+
+        if (produto == null) {
+            return false;
+        }
+
         if (produtos.containsKey(produto.getId())) {
             return false;
         }
