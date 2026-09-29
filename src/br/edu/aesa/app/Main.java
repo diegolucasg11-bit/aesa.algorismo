@@ -2,11 +2,11 @@ package br.edu.aesa.app;
 
 import br.edu.aesa.model.Produto;
 import br.edu.aesa.service.EstoqueService;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -304,5 +304,8 @@ public class Main {
             }
 
         } while (opcao != 0);
+        System.out.println("Programa encerrado.");
+        scanner.close();
     }
+
 }
