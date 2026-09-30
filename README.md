@@ -1,3 +1,8 @@
+
+
+https://youtu.be/zpw9EHue7E0?si=oiguCt1Psu5sp8pM
+
+
 # Controle de Estoque
 
 ## Descrição
